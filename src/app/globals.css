@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #A85A18;
+  --primary-dark: #8A4A12;
+  --primary-light: #C47840;
+  --dark: #222222;
+  --charcoal: #4A4A4A;
+  --warm-white: #FAF9F6;
+  --beige: #F2ECE4;
+  --white: #FFFFFF;
+}
+
+/* Base resets */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--warm-white);
+  color: var(--charcoal);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+h1,h2,h3,h4,h5 {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+}
+button, a { -webkit-tap-highlight-color: transparent; }
+::selection { background: var(--primary); color: white; }
+
+/* Reusable class helpers */
+.text-display {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-weight: 300;
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+}
+.text-eyebrow {
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+
+/* Button base styles — using plain CSS for Tailwind v4 compatibility */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  background: var(--primary);
+  color: white;
+  padding: 0.875rem 1.75rem;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+.btn-primary:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  border: 1px solid rgba(255,255,255,0.4);
+  color: white;
+  padding: 0.875rem 1.75rem;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease;
+}
+.btn-secondary:hover {
+  border-color: rgba(255,255,255,0.7);
+  background: rgba(255,255,255,0.1);
+  transform: translateY(-2px);
+}
+
+.btn-outline-dark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  border: 1px solid rgba(34,34,34,0.3);
+  color: var(--dark);
+  padding: 0.875rem 1.75rem;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  transition: border-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+.btn-outline-dark:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  transform: translateY(-2px);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
