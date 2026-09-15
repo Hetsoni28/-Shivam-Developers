@@ -1,5 +1,6 @@
 import { Navbar } from '@/components/organisms/Navbar'
 import { Hero } from '@/components/organisms/Hero'
+import { ConstructionScroll } from '@/components/organisms/ConstructionScroll'
 import { IntroSection } from '@/components/organisms/IntroSection'
 import { FeaturedProjects } from '@/components/organisms/FeaturedProjects'
 import { WhyShivam } from '@/components/organisms/WhyShivam'
@@ -17,6 +18,7 @@ export default function HomePage() {
       <Navbar />
       <main>
         <Hero />
+        <ConstructionScroll />
         <IntroSection />
         <FeaturedProjects projects={projects} />
         <WhyShivam />

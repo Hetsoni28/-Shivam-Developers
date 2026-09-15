@@ -5,6 +5,7 @@ import { motion, useScroll, useMotionValueEvent } from 'framer-motion'
 import { Menu, X, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 import { ShivamLogo } from '@/components/atoms/ShivamLogo'
+import { Breadcrumb } from '@/components/molecules/Breadcrumb'
 
 const navLinks = [
   { label: 'Home', href: '/' },
@@ -41,12 +42,18 @@ export function Navbar({ transparentTheme = 'dark' }: NavbarProps) {
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
       >
         <div className="mx-auto flex max-w-screen-xl items-center justify-between px-6 md:px-14 py-3.5">
-          {/* Logo */}
-          <Link href="/" className="group">
-            <ShivamLogo
+          {/* Logo & Breadcrumb */}
+          <div className="flex flex-col items-start justify-center">
+            <Link href="/" className="group" aria-label="Shivam Developers Home">
+              <ShivamLogo
+                theme={scrolled || transparentTheme === 'light' ? 'dark' : 'light'}
+              />
+            </Link>
+            <Breadcrumb
               theme={scrolled || transparentTheme === 'light' ? 'dark' : 'light'}
+              className="mt-2"
             />
-          </Link>
+          </div>
 
           {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center gap-6">

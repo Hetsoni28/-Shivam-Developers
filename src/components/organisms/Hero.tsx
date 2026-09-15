@@ -1,10 +1,12 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { ArrowRight, ArrowLeft, ArrowRight as ArrowRightIcon } from 'lucide-react'
 import Link from 'next/link'
 import { projects } from '@/data/projects'
+
+const HERO_VIDEO = '/hero-bg.mp4'
 
 const easing = [0.22, 1, 0.36, 1] as const
 
@@ -15,21 +17,21 @@ const DEFAULT_HERO_IMAGE =
 export function Hero() {
   const [activeProject, setActiveProject] = useState(0)
   const [mounted, setMounted] = useState(false)
-  const imgRef = useRef<HTMLImageElement>(null)
+  const videoRef = useRef<HTMLVideoElement>(null)
 
   useEffect(() => { setMounted(true) }, [])
 
-  // Current hero image = the active project's cover, or the default
+  // Current hero image for thumbnails = the active project's cover
   const currentHeroImage = projects[activeProject]?.coverImage ?? DEFAULT_HERO_IMAGE
 
-  // Subtle mouse parallax on the building photo
+  // Subtle mouse parallax on the video
   useEffect(() => {
     if (!mounted) return
     const handleMouse = (e: MouseEvent) => {
-      if (!imgRef.current) return
+      if (!videoRef.current) return
       const x = (e.clientX / window.innerWidth - 0.5) * 16
       const y = (e.clientY / window.innerHeight - 0.5) * 10
-      imgRef.current.style.transform = `scale(1.08) translate(${x * -0.3}px, ${y * -0.3}px)`
+      videoRef.current.style.transform = `scale(1.08) translate(${x * -0.3}px, ${y * -0.3}px)`
     }
     if (window.matchMedia('(pointer: fine)').matches) {
       window.addEventListener('mousemove', handleMouse)
@@ -43,29 +45,38 @@ export function Hero() {
   return (
     <section className="relative w-full min-h-screen overflow-hidden bg-[#0b0907] flex flex-col">
 
-      {/* ───────── Hero background — cross-fades on project change ───────── */}
-      <AnimatePresence mode="sync">
-        <motion.div
-          key={currentHeroImage}
-          className="absolute inset-0 z-0"
-          initial={{ opacity: 0, scale: 1.06 }}
-          animate={{ opacity: 1, scale: 1.04 }}
-          exit={{ opacity: 0, scale: 1.0 }}
-          transition={{ duration: 1.1, ease: easing }}
-        >
-          <img
-            ref={imgRef}
-            src={currentHeroImage}
-            alt={`${projects[activeProject]?.title ?? 'Shivam Developers'} — luxury building`}
-            className="w-full h-full object-cover object-center"
-            style={{ transition: 'transform 0.15s linear', transform: 'scale(1.08)' }}
-          />
-        </motion.div>
-      </AnimatePresence>
+      {/* ───────── Fallback image — shown while video loads ───────── */}
+      <div
+        className="absolute inset-0 z-0"
+        style={{
+          backgroundImage: `url(${currentHeroImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      />
+
+      {/* ───────── Hero background — cinematic video (on top of fallback) ───────── */}
+      <motion.div
+        className="absolute inset-0 z-[1] overflow-hidden"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.8, ease: easing }}
+      >
+        <video
+          ref={videoRef}
+          src={HERO_VIDEO}
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover object-center"
+          style={{ transition: 'transform 0.15s linear', transform: 'scale(1.08)' }}
+        />
+      </motion.div>
 
       {/* Dark gradient — heavy left + bottom, lighter right */}
       <div
-        className="absolute inset-0 z-[1] pointer-events-none"
+        className="absolute inset-0 z-[2] pointer-events-none"
         style={{
           background: `
             linear-gradient(to right,  rgba(11,9,7,0.92) 0%, rgba(11,9,7,0.55) 50%, rgba(11,9,7,0.22) 100%),
