@@ -1,7 +1,8 @@
-'use client'
+﻿'use client'
 
 import { ArrowUpRight } from 'lucide-react'
 import Link from 'next/link'
+import { ShivamLogo } from '@/components/atoms/ShivamLogo'
 
 const FacebookIcon = ({ size = 24, className = "" }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="#1877F2" className={className}>
@@ -52,20 +53,7 @@ export function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-5 gap-10 md:gap-8 pb-14 border-b border-white/8">
           {/* Brand */}
           <div className="col-span-2">
-            <div className="mb-4">
-              <span
-                className="block text-xs font-medium tracking-[0.22em] uppercase text-white/50 mb-0.5"
-                style={{ fontFamily: 'var(--font-inter)' }}
-              >
-                Shivam
-              </span>
-              <span
-                className="block text-2xl font-light tracking-[0.18em] text-white"
-                style={{ fontFamily: 'var(--font-cormorant)' }}
-              >
-                Developers
-              </span>
-            </div>
+            <div className="mb-6"><ShivamLogo theme="light" /></div>
             <p
               className="text-white/40 leading-[1.8] max-w-xs mt-4 mb-6"
               style={{ fontFamily: 'var(--font-inter)', fontSize: '0.8rem' }}
@@ -123,7 +111,7 @@ export function Footer() {
             className="text-white/25 text-center md:text-left"
             style={{ fontFamily: 'var(--font-inter)', fontSize: '0.72rem' }}
           >
-            © {new Date().getFullYear()} Shivam Developers. All rights reserved.
+            Â© {new Date().getFullYear()} Shivam Developers. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
             {['Privacy Policy', 'Terms of Use'].map((t) => (
@@ -142,3 +130,4 @@ export function Footer() {
     </footer>
   )
 }
+

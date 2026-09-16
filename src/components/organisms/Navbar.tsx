@@ -1,11 +1,10 @@
-'use client'
+﻿'use client'
 
 import { useState } from 'react'
 import { motion, useScroll, useMotionValueEvent } from 'framer-motion'
 import { Menu, X, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 import { ShivamLogo } from '@/components/atoms/ShivamLogo'
-import { Breadcrumb } from '@/components/molecules/Breadcrumb'
 
 const navLinks = [
   { label: 'Home', href: '/' },
@@ -49,10 +48,7 @@ export function Navbar({ transparentTheme = 'dark' }: NavbarProps) {
                 theme={scrolled || transparentTheme === 'light' ? 'dark' : 'light'}
               />
             </Link>
-            <Breadcrumb
-              theme={scrolled || transparentTheme === 'light' ? 'dark' : 'light'}
-              className="mt-2"
-            />
+            
           </div>
 
           {/* Desktop Nav */}
@@ -162,3 +158,4 @@ export function Navbar({ transparentTheme = 'dark' }: NavbarProps) {
     </>
   )
 }
+

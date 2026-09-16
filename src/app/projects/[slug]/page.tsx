@@ -1,7 +1,8 @@
-import { Navbar } from '@/components/organisms/Navbar'
+﻿import { Navbar } from '@/components/organisms/Navbar'
 import { Footer } from '@/components/organisms/Footer'
 import { FloatingActions } from '@/components/organisms/FloatingActions'
 import { ProjectHero } from '@/components/organisms/ProjectHero'
+import { ProjectOverview } from '@/components/organisms/ProjectOverview'
 import { ProjectGallery } from '@/components/organisms/ProjectGallery'
 import { InquiryForm } from '@/components/organisms/InquiryForm'
 import { projects } from '@/data/projects'
@@ -25,22 +26,17 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
 
   return (
     <>
-      <Navbar />
+      <Navbar transparentTheme="light" />
       <main className="bg-warm-white">
         <ProjectHero
+          amenities={project.amenities}
           title={project.title}
           category={project.category}
           propertyType={project.propertyType}
           coverImage={project.coverImage}
         />
 
-        {/* Overview */}
-        <section className="py-20 md:py-32 px-6 md:px-14 lg:px-20 max-w-screen-lg mx-auto text-center">
-          <h2 className="text-display text-dark text-3xl md:text-5xl mb-6">About The Project</h2>
-          <p className="text-charcoal/80 leading-[1.8] font-inter md:text-lg">
-            {project.description}
-          </p>
-        </section>
+        <ProjectOverview project={project} mapsUrl={mapsUrl} />
 
         {/* Gallery */}
         <ProjectGallery images={project.gallery} />
@@ -61,36 +57,6 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
             </div>
           </section>
         )}
-
-        {/* Location & Brochure */}
-        <section className="py-20 md:py-32 bg-white">
-          <div className="max-w-screen-xl mx-auto px-6 md:px-14 lg:px-20 grid grid-cols-1 md:grid-cols-2 gap-16">
-            <div>
-              <h2 className="text-display text-dark text-4xl mb-6">Location</h2>
-              <div className="flex items-start gap-3 mb-8">
-                <MapPin className="text-primary mt-1" size={20} />
-                <p className="font-inter text-charcoal/80 leading-[1.6]">
-                  {project.location}
-                </p>
-              </div>
-              <a href={mapsUrl} target="_blank" rel="noopener noreferrer" className="btn-outline-dark">
-                Open in Google Maps
-              </a>
-            </div>
-
-            {project.brochure && (
-              <div className="bg-warm-white p-10 flex flex-col justify-center items-start border border-charcoal/5">
-                <h2 className="text-display text-dark text-3xl mb-4">Official Brochure</h2>
-                <p className="font-inter text-sm text-charcoal/60 mb-8">
-                  Download the complete project brochure to view detailed floor plans, specifications, and terms.
-                </p>
-                <a href={project.brochure} target="_blank" rel="noopener noreferrer" className="btn-primary">
-                  Download PDF <Download size={16} />
-                </a>
-              </div>
-            )}
-          </div>
-        </section>
 
         {/* Inquiry Form */}
         <section className="py-20 md:py-32 bg-[#1A1A1A]">
@@ -113,3 +79,6 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
     </>
   )
 }
+
+
+

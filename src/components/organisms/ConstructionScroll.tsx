@@ -1,21 +1,21 @@
-'use client'
+﻿'use client'
 
 import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-// ─── Construction stage image paths ───────────────────────────────────────
+// â”€â”€â”€ Construction stage image paths â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const STAGES = [
-  '/construction/01-vision.webp',
-  '/construction/02-preparation.webp',
-  '/construction/03-foundation.webp',
-  '/construction/04-structure.webp',
-  '/construction/05-form.webp',
-  '/construction/06-craft.webp',
-  '/construction/07-landmark.webp',
+  'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=1920&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1920&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1920&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?q=80&w=1920&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1518481612222-68bbe828ecd1?q=80&w=1920&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1920&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1920&auto=format&fit=crop',
 ]
 
-// ─── Stage copy ───────────────────────────────────────────────────────────
+// â”€â”€â”€ Stage copy â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const STAGE_COPY = [
   {
     label: 'Vision',
@@ -57,12 +57,12 @@ const STAGE_COPY = [
 const TOTAL_STAGES = STAGES.length   // 7
 const SCROLL_HEIGHT = '600vh'
 
-// Width of each stage band in progress (0–1)
+// Width of each stage band in progress (0â€“1)
 const STAGE_BAND = 1 / (TOTAL_STAGES - 1)   // ~0.1667
 
-// ─── Helpers ──────────────────────────────────────────────────────────────
+// â”€â”€â”€ Helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
-/** Cover-fit an image onto the canvas — CSS object-fit:cover equivalent */
+/** Cover-fit an image onto the canvas â€” CSS object-fit:cover equivalent */
 function drawCover(
   ctx: CanvasRenderingContext2D,
   img: HTMLImageElement,
@@ -115,7 +115,7 @@ function preloadImages(onReady: (images: HTMLImageElement[]) => void) {
   })
 }
 
-// ─── Component ────────────────────────────────────────────────────────────
+// â”€â”€â”€ Component â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 export function ConstructionScroll() {
   const sectionRef    = useRef<HTMLDivElement>(null)
@@ -149,7 +149,7 @@ export function ConstructionScroll() {
       ? window.matchMedia('(prefers-reduced-motion: reduce)').matches
       : false
 
-  // ── Main setup effect ─────────────────────────────────────────────────
+  // â”€â”€ Main setup effect â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   useEffect(() => {
     if (typeof window === 'undefined') return
 
@@ -171,7 +171,7 @@ export function ConstructionScroll() {
     const state = stateRef.current
     state.startTime = performance.now()
 
-    // ── Resize ────────────────────────────────────────────────────────
+    // â”€â”€ Resize â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     const resize = () => {
       canvas.width  = window.innerWidth
       canvas.height = window.innerHeight
@@ -180,7 +180,7 @@ export function ConstructionScroll() {
     resize()
     window.addEventListener('resize', resize)
 
-    // ── Text transition helper ─────────────────────────────────────────
+    // â”€â”€ Text transition helper â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     const textEls = [labelEl, headEl, bodyEl].filter(Boolean) as HTMLElement[]
 
     function showStageText(stageIdx: number, instant = false) {
@@ -221,7 +221,7 @@ export function ConstructionScroll() {
       })
     }
 
-    // ── Progress indicator dots ────────────────────────────────────────
+    // â”€â”€ Progress indicator dots â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     function updateIndicator(stageIdx: number) {
       if (!indEl) return
       const dots = indEl.querySelectorAll<HTMLElement>('[data-dot]')
@@ -236,7 +236,7 @@ export function ConstructionScroll() {
       })
     }
 
-    // ── Initialise text at stage 0 ─────────────────────────────────────
+    // â”€â”€ Initialise text at stage 0 â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     if (overlay) {
       const c0 = STAGE_COPY[0]
       if (labelEl) labelEl.textContent = c0.label.toUpperCase()
@@ -251,7 +251,7 @@ export function ConstructionScroll() {
     }
     state.activeStage = 0
 
-    // ── RAF render loop ────────────────────────────────────────────────
+    // â”€â”€ RAF render loop â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     const render = () => {
       state.raf = requestAnimationFrame(render)
 
@@ -269,7 +269,7 @@ export function ConstructionScroll() {
       const elapsed = (performance.now() - state.startTime) / 1000
       const ambientScale = 1 + 0.005 * Math.sin(elapsed * 0.35)
 
-      // Map progress → float index across 7 stages (0 … 6)
+            // Map progress +' float index across 7 stages (0 ? 6)
       const rawIndex = progress * (TOTAL_STAGES - 1)
       const lowerIdx = Math.floor(rawIndex)
       const upperIdx = Math.min(lowerIdx + 1, TOTAL_STAGES - 1)
@@ -280,18 +280,33 @@ export function ConstructionScroll() {
 
       ctx.clearRect(0, 0, W, H)
 
-      if (imgA?.complete && imgA.naturalWidth > 0) {
-        ctx.globalAlpha = 1
+      // Make the image crossfade much sharper so they don't overlap for long
+      let fadeOutA = 1
+      let fadeInB = 0
+
+      // We'll use a dip-to-black style sharp crossfade
+      if (blend < 0.5) {
+        // First half: fade out A slightly
+        fadeOutA = 1 - (blend * 1.5) // Fades down to 0.25
+        fadeInB = 0
+      } else {
+        // Second half: fade in B
+        fadeOutA = 0
+        fadeInB = (blend - 0.5) * 2 // Fades 0 to 1
+      }
+
+      if (imgA?.complete && imgA.naturalWidth > 0 && fadeOutA > 0) {
+        ctx.globalAlpha = Math.max(0, Math.min(1, fadeOutA))
         drawCover(ctx, imgA, W, H, ambientScale)
       }
 
-      if (imgB?.complete && imgB.naturalWidth > 0 && blend > 0) {
-        ctx.globalAlpha = blend
+      if (imgB?.complete && imgB.naturalWidth > 0 && fadeInB > 0) {
+        ctx.globalAlpha = Math.max(0, Math.min(1, fadeInB))
         drawCover(ctx, imgB, W, H, ambientScale)
         ctx.globalAlpha = 1
       }
 
-      // Dark vignette — bottom-left gradient for text legibility
+      // Dark vignette â€” bottom-left gradient for text legibility
       const vignette = ctx.createLinearGradient(0, H, W * 0.55, 0)
       vignette.addColorStop(0,   'rgba(11,9,7,0.72)')
       vignette.addColorStop(0.5, 'rgba(11,9,7,0.30)')
@@ -312,7 +327,7 @@ export function ConstructionScroll() {
 
     render()
 
-    // ── Preload images ─────────────────────────────────────────────────
+    // â”€â”€ Preload images â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     preloadImages((images) => {
       state.images = images
       state.dirty  = true
@@ -327,7 +342,7 @@ export function ConstructionScroll() {
       updateIndicator(0)
     })
 
-    // ── Reduced-motion: static final frame, no scroll ─────────────────
+    // â”€â”€ Reduced-motion: static final frame, no scroll â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     if (prefersReducedMotion) {
       state.progress = 1
       state.dirty    = true
@@ -338,7 +353,7 @@ export function ConstructionScroll() {
       }
     }
 
-    // ── ScrollTrigger ─────────────────────────────────────────────────
+    // â”€â”€ ScrollTrigger â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     const trigger = ScrollTrigger.create({
       trigger: section,
       start: 'top top',
@@ -378,7 +393,7 @@ export function ConstructionScroll() {
         })
       : null
 
-    // ── Cleanup ────────────────────────────────────────────────────────
+    // â”€â”€ Cleanup â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     return () => {
       cancelAnimationFrame(state.raf)
       clearInterval(ambientInterval)
@@ -388,7 +403,7 @@ export function ConstructionScroll() {
     }
   }, [prefersReducedMotion])
 
-  // ── Reduced-motion fallback ───────────────────────────────────────────
+  // â”€â”€ Reduced-motion fallback â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   if (prefersReducedMotion) {
     return (
       <section aria-label="Construction story">
@@ -402,14 +417,14 @@ export function ConstructionScroll() {
     )
   }
 
-  // ── Main render ───────────────────────────────────────────────────────
+  // â”€â”€ Main render â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   return (
     <section
       ref={sectionRef}
-      aria-label="Construction story — from vision to landmark"
+      aria-label="Construction story â€” from vision to landmark"
       style={{ position: 'relative', height: SCROLL_HEIGHT, background: '#0b0907' }}
     >
-      {/* Canvas — pinned by GSAP ScrollTrigger */}
+      {/* Canvas â€” pinned by GSAP ScrollTrigger */}
       <canvas
         ref={canvasRef}
         aria-hidden="true"
@@ -423,7 +438,7 @@ export function ConstructionScroll() {
         }}
       />
 
-      {/* ── Text overlay — pinned separately ─────────────────────────── */}
+      {/* â”€â”€ Text overlay â€” pinned separately â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <div
         ref={overlayRef}
         aria-live="polite"
@@ -439,7 +454,7 @@ export function ConstructionScroll() {
           marginTop: '-100vh',
         }}
       >
-        {/* Stage text — lower-left */}
+        {/* Stage text â€” lower-left */}
         <div
           style={{
             position: 'absolute',
@@ -493,7 +508,7 @@ export function ConstructionScroll() {
           />
         </div>
 
-        {/* ── Progress indicator — right side, desktop only ─────────── */}
+        {/* â”€â”€ Progress indicator â€” right side, desktop only â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
         <div
           ref={indicatorRef}
           aria-hidden="true"
@@ -528,3 +543,6 @@ export function ConstructionScroll() {
     </section>
   )
 }
+
+
+

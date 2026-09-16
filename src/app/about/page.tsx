@@ -1,8 +1,9 @@
-import { Navbar } from '@/components/organisms/Navbar'
+﻿import { Navbar } from '@/components/organisms/Navbar'
 import { Footer } from '@/components/organisms/Footer'
 import { FloatingActions } from '@/components/organisms/FloatingActions'
 import { Journey } from '@/components/organisms/Journey'
 import { ArrowRight } from 'lucide-react'
+import { Breadcrumb } from '@/components/molecules/Breadcrumb'
 import Link from 'next/link'
 
 export default function AboutPage() {
@@ -10,6 +11,9 @@ export default function AboutPage() {
     <>
       <Navbar transparentTheme="light" />
       <main className="pt-24 min-h-screen bg-warm-white">
+        <div className="px-6 md:px-14 lg:px-20 max-w-screen-xl mx-auto pt-4 pb-2">
+          <Breadcrumb theme="dark" />
+        </div>
         {/* Hero Section */}
         <section className="px-6 py-20 md:px-14 lg:px-20 max-w-screen-xl mx-auto text-center">
           <h1 className="text-display text-dark text-5xl md:text-7xl lg:text-[5.5rem] mb-6">
@@ -54,3 +58,9 @@ export default function AboutPage() {
     </>
   )
 }
+
+
+
+
+
+

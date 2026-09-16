@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
@@ -31,7 +31,7 @@ function ProjectCard({
       <div className={`relative overflow-hidden ${wide ? 'aspect-[16/9]' : 'aspect-[3/4]'}`}>
         <motion.div
           className="absolute inset-0"
-          animate={{ scale: hovered ? 1.06 : 1.0 }}
+          animate={{ scale: hovered ? 1.05 : 1.0 }}
           transition={{ duration: 0.8, ease: easing }}
           style={{
             backgroundImage: project.coverImage ? `url(${project.coverImage})` : undefined,
@@ -41,16 +41,31 @@ function ProjectCard({
           }}
         />
 
-        {/* Gradient overlay — always present, stronger on hover */}
+        {/* Gradient overlay - strong copper/dark tint on hover */}
         <motion.div
-          className="absolute inset-0"
+          className="absolute inset-0 z-0"
           animate={{
             background: hovered
-              ? 'linear-gradient(to top, rgba(11,9,7,0.92) 0%, rgba(11,9,7,0.3) 55%, rgba(11,9,7,0.1) 100%)'
+              ? 'linear-gradient(to top, rgba(11,9,7,0.95) 0%, rgba(196,120,64,0.4) 50%, rgba(11,9,7,0.6) 100%)'
               : 'linear-gradient(to top, rgba(11,9,7,0.75) 0%, rgba(11,9,7,0.15) 60%, rgba(11,9,7,0.05) 100%)',
           }}
           transition={{ duration: 0.5 }}
         />
+
+        {/* Center Button - perfectly matches the clean outline style requested */}
+        <motion.div
+          className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none"
+          initial={false}
+          animate={{ opacity: hovered ? 1 : 0, scale: hovered ? 1 : 0.95 }}
+          transition={{ duration: 0.4, ease: easing }}
+        >
+          <span 
+            className="px-7 py-3 border border-white text-white text-[0.7rem] tracking-[0.25em] uppercase font-medium bg-transparent transition-all duration-300"
+            style={{ textShadow: '0 2px 10px rgba(0,0,0,0.3)' }}
+          >
+            View Project &rarr;
+          </span>
+        </motion.div>
 
         {/* Status badge */}
         {project.status && (
@@ -64,23 +79,12 @@ function ProjectCard({
           </div>
         )}
 
-        {/* Arrow icon top-right */}
-        <motion.div
-          className="absolute top-5 right-5 z-10 w-9 h-9 border border-white/30 flex items-center justify-center backdrop-blur-sm"
-          animate={{
-            borderColor: hovered ? 'rgba(193,122,58,0.8)' : 'rgba(255,255,255,0.3)',
-            background: hovered ? 'rgba(193,122,58,0.15)' : 'transparent',
-          }}
-          transition={{ duration: 0.3 }}
+        {/* Text content - slides down slightly on hover to give focus to the center button */}
+        <motion.div 
+          className="absolute bottom-0 left-0 right-0 p-6 z-10 pointer-events-none flex flex-col justify-end"
+          animate={{ y: hovered ? 5 : 0, opacity: hovered ? 0.7 : 1 }}
+          transition={{ duration: 0.4, ease: easing }}
         >
-          <ArrowUpRight
-            size={15}
-            className="text-white transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-          />
-        </motion.div>
-
-        {/* Text content — slides up on hover */}
-        <div className="absolute bottom-0 left-0 right-0 p-6 z-10">
           {/* Index number */}
           <p
             className="text-white/30 mb-3"
@@ -111,37 +115,23 @@ function ProjectCard({
             </p>
           )}
 
-          {/* Location + CTA — reveals on hover */}
-          <motion.div
-            className="mt-4 flex items-center justify-between"
-            initial={false}
-            animate={{ opacity: hovered ? 1 : 0, y: hovered ? 0 : 8 }}
-            transition={{ duration: 0.35, ease: easing }}
-          >
-            {project.location && (
-              <span
-                className="flex items-center gap-1.5 text-white/55"
-                style={{ fontFamily: 'var(--font-inter)', fontSize: '0.68rem' }}
-              >
-                <MapPin size={10} className="text-primary" />
-                {project.location}
-              </span>
-            )}
-            <span
-              className="text-primary text-[0.62rem] font-medium tracking-[0.16em] uppercase"
-              style={{ fontFamily: 'var(--font-inter)' }}
+          {/* Location */}
+          {project.location && (
+            <div className="mt-4 flex items-center gap-1.5 text-white/55"
+              style={{ fontFamily: 'var(--font-inter)', fontSize: '0.68rem' }}
             >
-              Explore →
-            </span>
-          </motion.div>
+              <MapPin size={10} className="text-primary" />
+              {project.location}
+            </div>
+          )}
 
           {/* Copper bottom bar */}
           <motion.div
-            className="absolute bottom-0 left-0 h-[2px] bg-primary"
+            className="absolute bottom-0 left-0 h-[3px] bg-primary"
             animate={{ width: hovered ? '100%' : '0%' }}
             transition={{ duration: 0.5, ease: easing }}
           />
-        </div>
+        </motion.div>
       </div>
     </Link>
   )
@@ -196,14 +186,14 @@ export function FeaturedProjects({ projects }: FeaturedProjectsProps) {
           </div>
         </FadeUp>
 
-        {/* Row 1 — Feature card: full width, landscape */}
+        {/* Row 1 â€” Feature card: full width, landscape */}
         {projects.slice(0, 1).map((project, i) => (
           <div key={project.slug} className="mb-4">
             <ProjectCard project={project} index={i} wide />
           </div>
         ))}
 
-        {/* Row 2 — Supporting cards: 2-column grid */}
+        {/* Row 2 â€” Supporting cards: 2-column grid */}
         {projects.length > 1 && (
           <div className="grid sm:grid-cols-2 gap-4">
             {projects.slice(1, 3).map((project, i) => (
@@ -216,3 +206,6 @@ export function FeaturedProjects({ projects }: FeaturedProjectsProps) {
     </section>
   )
 }
+
+
+

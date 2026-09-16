@@ -1,3 +1,4 @@
+﻿import { Breadcrumb } from '@/components/molecules/Breadcrumb'
 import { Navbar } from '@/components/organisms/Navbar'
 import { Footer } from '@/components/organisms/Footer'
 import { FloatingActions } from '@/components/organisms/FloatingActions'
@@ -11,6 +12,9 @@ export default function ContactPage() {
     <>
       <Navbar transparentTheme="light" />
       <main className="pt-24 min-h-screen bg-warm-white pb-20">
+        <div className="px-6 md:px-14 lg:px-20 max-w-screen-xl mx-auto pt-4 pb-2">
+          <Breadcrumb theme="dark" />
+        </div>
         <section className="px-6 py-16 md:px-14 lg:px-20 max-w-screen-xl mx-auto">
           <FadeUp>
             <h1 className="text-display text-dark text-5xl md:text-7xl mb-16 text-center">
@@ -82,3 +86,10 @@ export default function ContactPage() {
     </>
   )
 }
+
+
+
+
+
+
+
